@@ -1,0 +1,123 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMZhIxF2KOs9ZEHhhdrEGuF",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DayanaP03/hola-mundo/blob/main/juego%231\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "GyOLf0XcGNbw"
+      },
+      "outputs": [],
+      "source": [
+        "#juego de adivinanza\n",
+        "import random\n",
+        "\n",
+        "def bienvenida():\n",
+        "    print(\"¡Bienvenido al juego de adivinanza!\")\n",
+        "    print(\"En este juego, tendrás que adivinar un número secreto.\")\n",
+        "    print(\"Cada vez que falles, te diré si el número secreto es más alto o más bajo.\")\n",
+        "    print(\"¡Buena suerte!\")\n",
+        "\n",
+        "def elegir_dificultad():\n",
+        "    print(\"\\nPor favor, elige un nivel de dificultad:\")\n",
+        "    print(\"1. Fácil (Rango 1 a 10)\")\n",
+        "    print(\"2. Medio (Rango 1 a 50)\")\n",
+        "    print(\"3. Difícil (Rango 1 a 100)\")\n",
+        "\n",
+        "    while True:\n",
+        "        try:\n",
+        "            dificultad = int(input(\"Elige una opción (1/2/3): \"))\n",
+        "            if dificultad in [1, 2, 3]:\n",
+        "                break\n",
+        "            else:\n",
+        "                print(\"Opción no válida. Por favor elige 1, 2 o 3.\")\n",
+        "        except ValueError:\n",
+        "            print(\"Por favor, ingresa un número válido.\")\n",
+        "\n",
+        "    if dificultad == 1:\n",
+        "        rango = 10\n",
+        "    elif dificultad == 2:\n",
+        "        rango = 50\n",
+        "    else:\n",
+        "        rango = 100\n",
+        "\n",
+        "    return rango\n",
+        "\n",
+        "def jugar(rango):\n",
+        "    numero_secreto = random.randint(1, rango)\n",
+        "    intentos = 0\n",
+        "    puntuacion = 100  # Comienza con la máxima puntuación\n",
+        "\n",
+        "    print(f\"\\n¡Listo para jugar! Estoy pensando en un número entre 1 y {rango}.\")\n",
+        "\n",
+        "    while True:\n",
+        "        try:\n",
+        "            guess = int(input(\"¿Cuál es tu adivinanza? \"))\n",
+        "            intentos += 1\n",
+        "\n",
+        "            if guess < numero_secreto:\n",
+        "                print(\"El número secreto es más alto. ¡Intenta de nuevo!\")\n",
+        "                puntuacion -= 10  # Se pierde puntuación con cada intento fallido\n",
+        "            elif guess > numero_secreto:\n",
+        "                print(\"El número secreto es más bajo. ¡Intenta de nuevo!\")\n",
+        "                puntuacion -= 10\n",
+        "            else:\n",
+        "                print(f\"¡Felicidades! Has adivinado el número en {intentos} intentos.\")\n",
+        "                break\n",
+        "        except ValueError:\n",
+        "            print(\"Por favor, ingresa un número válido.\")\n",
+        "\n",
+        "    print(f\"Tu puntuación final es: {puntuacion}\")\n",
+        "\n",
+        "def continuar_jugando():\n",
+        "    while True:\n",
+        "        respuesta = input(\"\\n¿Quieres jugar otra vez? (s/n): \").lower()\n",
+        "        if respuesta == 's':\n",
+        "            return True\n",
+        "        elif respuesta == 'n':\n",
+        "            return False\n",
+        "        else:\n",
+        "            print(\"Por favor, ingresa 's' para sí o 'n' para no.\")\n",
+        "\n",
+        "def main():\n",
+        "    bienvenida()\n",
+        "\n",
+        "    while True:\n",
+        "        rango = elegir_dificultad()\n",
+        "        jugar(rango)\n",
+        "\n",
+        "        if not continuar_jugando():\n",
+        "            print(\"Gracias por jugar. ¡Hasta la próxima!\")\n",
+        "            break\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    main()\n"
+      ]
+    }
+  ]
+}
