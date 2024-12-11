@@ -1,0 +1,152 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOoRDMnkEb+UJwxAB//Fyyr",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DayanaP03/hola-mundo/blob/main/JUEGADOR%40S\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#ADIVINA Y GANA ▶\n",
+        "****************************************************************************\n",
+        "Mi programa conciste en ser  una calculadora interactiva que permite realizar\n",
+        "operaciones matemáticas básicas como suma, resta, multiplicación y división. El usuario selecciona una opción del menú (1 para sumar, 2 para restar, 3 para multiplicar, 4 para dividir, o 5 para salir) e ingresa dos números para realizar la operación elegida. Luego, el programa muestra el resultado correspondiente. Además, maneja errores como la división por cero y entradas no válidas, proporcionando mensajes de advertencia si el usuario ingresa un valor incorrecto. El programa sigue ejecutándose hasta que el usuario elige salir (opción 5).\n",
+        "****************************************************************************"
+      ],
+      "metadata": {
+        "id": "IFANPrlZv-iI"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def sumar(a, b):\n",
+        "    return a + b\n",
+        "\n",
+        "def restar(a, b):\n",
+        "    return a - b\n",
+        "\n",
+        "def multiplicar(a, b):\n",
+        "    return a * b\n",
+        "\n",
+        "def dividir(a, b):\n",
+        "    if b != 0:\n",
+        "        return a / b\n",
+        "    else:\n",
+        "        return \"Error: División por cero\"\n",
+        "\n",
+        "def menu():\n",
+        "    print(\"Operaciones matemáticas:\")\n",
+        "    print(\"1. Sumar\")\n",
+        "    print(\"2. Restar\")\n",
+        "    print(\"3. Multiplicar\")\n",
+        "    print(\"4. Dividir\")\n",
+        "    print(\"5. Salir\")\n",
+        "\n",
+        "while True:\n",
+        "    menu()\n",
+        "    try:\n",
+        "        opcion = int(input(\"Elige una opción (1/2/3/4/5): \"))\n",
+        "\n",
+        "        if opcion == 5:\n",
+        "            print(\"Saliendo del programa...\")\n",
+        "            break\n",
+        "\n",
+        "        num1 = float(input(\"Ingresa el primer número: \"))\n",
+        "        num2 = float(input(\"Ingresa el segundo número: \"))\n",
+        "\n",
+        "        if opcion == 1:\n",
+        "            print(f\"La suma es: {sumar(num1, num2)}\")\n",
+        "        elif opcion == 2:\n",
+        "            print(f\"La resta es: {restar(num1, num2)}\")\n",
+        "        elif opcion == 3:\n",
+        "            print(f\"La multiplicación es: {multiplicar(num1, num2)}\")\n",
+        "        elif opcion == 4:\n",
+        "            print(f\"La división es: {dividir(num1, num2)}\")\n",
+        "        else:\n",
+        "            print(\"Opción no válida.\")\n",
+        "    except ValueError:\n",
+        "        print(\"Entrada no válida. Por favor, ingresa un número.\")\n"
+      ],
+      "metadata": {
+        "id": "uAFXIOlNv7Eo"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# PRUEBA TU SUERTE ⏰\n",
+        "*************************************************************************\n",
+        "El programa lanza dos dados de manera repetida, calcula su suma y continúa lanzando hasta que dicha suma sea igual a un número objetivo (en este caso, 12). Cada vez que lanza los dados, muestra los valores de los dos dados y su suma. Una vez que se alcanza el objetivo, el programa informa cuántos lanzamientos fueron necesarios para lograrlo.\n",
+        "**************************************************************************"
+      ],
+      "metadata": {
+        "id": "kJS9UX90wsOX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "\n",
+        "def lanzar_dados():\n",
+        "    # Lanzar dos dados y devolver su suma\n",
+        "    dado1 = random.randint(1, 6)\n",
+        "    dado2 = random.randint(1, 6)\n",
+        "    return dado1, dado2, dado1 + dado2\n",
+        "\n",
+        "def simulador_lanzamiento_objetivo(objetivo):\n",
+        "    print(f\"Simulador de lanzamientos de dados para obtener {objetivo}!\")\n",
+        "    intentos = 0\n",
+        "\n",
+        "    while True:\n",
+        "        dado1, dado2, suma = lanzar_dados()\n",
+        "        intentos += 1\n",
+        "        print(f\"Lanzamiento {intentos}: Dado 1: {dado1}, Dado 2: {dado2}, Suma: {suma}\")\n",
+        "\n",
+        "        if suma == objetivo:\n",
+        "            print(f\"¡Felicidades! Obtuviste {objetivo} en {intentos} intentos.\")\n",
+        "            break\n",
+        "\n",
+        "# Establecer el objetivo (12 es el máximo en el lanzamiento de dos dados)\n",
+        "simulador_lanzamiento_objetivo(12)\n"
+      ],
+      "metadata": {
+        "id": "vRIMhWpnwhDI"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "Dzm0d9nQv77x"
+      }
+    }
+  ]
+}
